@@ -1,2 +1,3 @@
-# MicroVBA-PowerPoint-
-MicroVBA is a VBA interpreter written in VBA to be used in PowerPoint in order to be able to import large vector graphics files. The objective is to bypass the 16KB limitation of VBA for procedures (Subs and Functions) and to supply  more pertinent error messages. It can be extended to handle full VBA syntax.
+# MicroVBA-PowerPoint
+MicroVBA is a VBA interpreter written in VBA to be used in PowerPoint in order to be able to import large vector graphics files. The objective is to simplify the construction of complex objects, to bypass the 16KB limitation of VBA for procedures (Subs and Functions) and to supply more pertinent error messages. It can be extended to handle full VBA syntax. MicroVBA programs can theoretically run as a macro in PowerPoint. However, due to limitations in the size of procedures, 
+VBA macros cannot be used as a **Vector Graphics File Format**, since complex vector graphics files almost always have much more than 16kB. MicroVBA is exactly that, a programming language that can also function as a vector graphics format with no limitations in size. 
