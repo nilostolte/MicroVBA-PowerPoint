@@ -188,7 +188,7 @@ Then, in the **Add Watch** window just opened type **.Nodes** on the right of **
 
 ![image](https://user-images.githubusercontent.com/80269251/117291954-9d495900-ae3d-11eb-8af2-1a085be2b56d.png)
 
-The **Nodes** Collection will appear in the **Watches** subwindow. Expand **Watch** subwindow by press-clicking at the cross inside the indicated red circle and, still holding the mouse click button, pull it up as indicated below.
+The **Nodes** Collection will appear in the **Watches** subwindow. Expand **Watch** subwindow by press-clicking at the position indicated by the red cross inside the red circle and, still holding the mouse click button, pull it up as indicated below.
 
 ![image](https://user-images.githubusercontent.com/80269251/117293881-f619f100-ae3f-11eb-977b-d052f3340746.png)
 
@@ -215,7 +215,7 @@ Node 79:  line to (289, 338)
 Nodes 80 – 100 : basket
 ```
 
-A more detailed explanation about this object can be found in the section [The Resulting Stack Icon](https://github.com/nilostolte/MicroVBA-PowerPoint#the-resulting-stack-icon)
+A more detailed explanation about this object can be found in the section [The Resulting Stack Icon](https://github.com/nilostolte/MicroVBA-PowerPoint#the-resulting-stack-icon).
 
 The first noticeable detail is that the first object is special as one can easily deduce from the notes. It has only 14 nodes, while the other "elements" have 15 nodes. This is because its closing _"lineto"_ command is mingled in node 15, which closes "element 1". Since the the first node can be thought as the first "moveto" of the whole path (passed as a parameter to **BuildFreeform**), this point becomes a kind of a pivot for all other subpaths as one could see when **Edit Points** has been chosen.
 
@@ -242,11 +242,11 @@ This example produces the icon of the second menu option of the file [**menugrap
   <img src="https://user-images.githubusercontent.com/80269251/117310644-74cb5a00-ae51-11eb-9aca-763522335f3d.png">
 </p>
 
-As explained above, the icon, which was produced by the macro **createobj**, was modified on the fly by the macro **example**. Since the object is indivisible one can scale it at will and all the points are scaled accordingly. Notice that the macro **createobj** with the code shown in the section [Understanding PowerPoint Internal Path Representation.](https://github.com/nilostolte/MicroVBA-PowerPoint#understanding-powerpoint-internal-path-representation) above is actually a snippet from a MicroVBA code that produces the menu [menuinfographics6](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/menuInforgraphics6.pptx), supplied in this repository.
+As explained above, the icon, which was produced by the macro **createobj**, was modified on the fly by the macro **example**. Since the object is indivisible one can scale it at will and all the points are scaled accordingly. Notice that the macro **createobj** with the code shown in the section [Understanding PowerPoint Internal Path Representation](https://github.com/nilostolte/MicroVBA-PowerPoint#understanding-powerpoint-internal-path-representation) above is actually a snippet from a MicroVBA code that produces the menu [menuinfographics6](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/menuInforgraphics6.pptx), supplied in this repository.
 
-This icon represents a stack with five elements being pushed or popped from the stack. The stack itself is represented here as a "basket", as it was mentioned in section [The Pivot Point](https://github.com/nilostolte/MicroVBA-PowerPoint#the-pivot-point) above, while the five objects in the stack are simply referenced as "element 1" to "element 5".
+This icon represents a stack with five elements being pushed or popped from the stack. The stack itself is represented here as a "basket", as it was mentioned in section [The Pivot Point](https://github.com/nilostolte/MicroVBA-PowerPoint#the-pivot-point) above, while the five objects in the stack are simply referenced as "element 1" to "element&nbsp;5".
 
-One can can be obtain paths with subpaths manually by using the **Combine Shapes** which is hidden in PowerPoint 2010. It actually produces paths in a similar way that was demontrated above.
+One can manually obtain paths with subpaths by using the **Combine Shapes** menu, which is hidden in PowerPoint 2010. It actually produces paths in a similar way that was demontrated above.
 
 In this example the subpaths do not overlap and it is a perfect example of **Shape Union**. One can reproduce this by creating different objects, selecting all of them, and then applying **Shape Union** operation. However, how can one reproduce a **Shape Subtraction** operation using the scheme just presented above?
 
