@@ -174,4 +174,4 @@ Right click the object and choose **Edit Points**. One will get the following ef
 
 ![image](https://user-images.githubusercontent.com/80269251/117229751-97298d00-ade9-11eb-96a6-09699409714c.png)
 
-As one can see, the red lines are the _"lineto"_ commands to the first point of the path. These lines only appear when one chose **edit Points**. In fact all these elements are considered as a single object. Now, returning to the macro window, one can notice that the program stopped exactly where it was asked.
+As one can see, the red lines are the _"lineto"_ commands to the first point of the path. These lines only appear when one choses **edit Points**. In fact all these elements are considered as a single object. Now, returning to the macro window, one can notice that the program stopped exactly where it was asked.
