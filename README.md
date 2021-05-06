@@ -1,6 +1,14 @@
 # MicroVBA-PowerPoint
 MicroVBA is a VBA interpreter written in VBA to be used in **PowerPoint** in order to be able to import large vector graphics files. The advantages are: **vectorization of PowerPoint presentations** (no fonts needed), can be used as a **Vector Graphics File Format** storage, **smooth connectivity** with VBA programs inside the PowerPoint presentations, simplification of complex objects construction, **no limitations in the size of the files** and **more pertinent and helpful error messages**. It actually does not need full VBA conpatibility, since it can smoothly integrate with VBA programs in the Powerpoint presentation.
 
+## MicroVBA Interpreter
+
+The MicroVBA interpreter can be found inside the file [**ReadMicroVBA.pptm**](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/MicroVBA%20Interpreter/ReadMicroVBA.pptm) under the name of **MicroVBA**. The macro **MicroVBA**, when executed, actually reads the file [**macro.txt**](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/MicroVBA%20Interpreter/macro.txt), which contains the MicroVBA program, and executes it. This program generates the vector objects shown in the presentation [menuInforgraphics6.pptx](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/menuInforgraphics6.pptx).
+
+The file [**macro.txt**](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/MicroVBA%20Interpreter/macro.txt) was generated automatically by a modified version of [FreeHep](https://github.com/nilostolte/FreeHep#freehep) project soon to appear in another repository.
+
+A part of **macro.txt** is used in the section [Understanding PowerPoint Internal Path Representation](https://github.com/nilostolte/MicroVBA-PowerPoint#understanding-powerpoint-internal-path-representation) as an example to show how to create paths with subpaths using MicroVBA in PowerPoint.
+
 ## Overview
 MicroVBA programs can theoretically run as macros in PowerPoint. However, due to limitations in the size of VBA procedures, 
 VBA macros cannot be used as a general multi-purpose **Vector Graphics File Format**, since complex vector graphics files almost always have much more than 64kB. **MicroVBA solves this problem** and can definitely be used as a vector graphics file format with no limitations in size. Thus, **MicroVBA is a language that is between PostScript and PDF**, because it has limited programming features, even though it is more programmable than PDF and it can be connected to a full-fledged VBA program already in the PowerPoint presentation. It has all characteristics of PostScript with advantages, since Powerpoint is able to handle transparency (just like PDF). In this sense, MicroVBA uses PowerPoint as its rendering engine, in the same way PostScript files need an interpreter to display their content and PDF files also need a program (like Acrobat) to be rendered.
@@ -16,7 +24,7 @@ As one can easily see, MicroVBA opens the door to very powerful uses that were d
 
 What completes the use of MicroVBA are **convertions from other vector formats**. This has already been accoplished by a modification of FreeHEP project that generates a MicroVBA file from whatever a Java program shows. Even though this looks more like a programmer's solution, that is not really the case because the Java vector information can be stored in a file using an intermediate file format. This file can be read and the program can than convert the information into MicroVBA.
 
-## Understanding PowerPoint Internal Path Representation.
+## Understanding PowerPoint Internal Path Representation
 
 In this exposition the following snippet is used as a macro in the file [PPTPathAnalysis.pptm](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/PPTPathAnalysis.pptm):
 
