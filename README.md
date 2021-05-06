@@ -85,9 +85,9 @@ In this exposition the following snippet is used as a macro in the file [PPTPath
     MyLine.Visible = False
 ```
 
-The first lines expose a major simplification used in MicroVBA: the parser cannot handle more than two indirections. This is not really a big problem, since indirections can be broken by subdividing them and storing them in a cascade of variables as shown above. Another limitation, is that expressions are not allowed. Also no VBA function is yet supported, except functions from objects as shown in the example. Functions can be easily wrapped into an object (named _"VBA"_, for example, where all the functions can be accessed as methods from this object). This has not been done because it is probable that this has already been done somewhere although this has not yet been found. A useful contribution to this project would be this. 
+The first lines expose a major simplification used in MicroVBA: the parser cannot handle more than two indirections. This is not really a big problem, since indirections can be broken by subdividing them and storing them in a cascade of variables as shown above. Another limitation, is that expressions are not allowed. Also no VBA function is yet supported, except functions from objects as shown in the example. Functions can be easily wrapped into an object (named _"VBA"_, for example, where all the functions can be accessed as methods from this object). This has not been done because it is probable that this has already been done somewhere although it has not yet been found. This would be a useful contribution to this project. 
 
-Finally, arithmetic operations can also be implemented as methods in the same object, for example, thus, avoiding complex expressions parsing which is not only slow but also increases too much the size of the interpreter. Complex expressions can be broken in simpler parts that are parsed and executed much faster than wasting time in the analysis of expressions. This principle is very similar to the one found in RISC processors. The reason RISC processors are so common nowadays is because it is better to have many more simple RISC cores than having a single complex one. It also consumes much less energy and has the potential to be much faster as all cores are used in a set of threads that are all executed in parallel. A similar reasoning applies here, since a simpler interpreter can revamp programs that use already the full VBA potential.
+Finally, arithmetic operations can also be implemented as methods in the same object, for example, thus, avoiding complex expressions parsing which is not only slow but also increases too much the size of the interpreter. Complex expressions can be broken in simpler parts that are parsed and executed much faster than wasting time in the analysis of expressions. This principle is very similar to the one found in RISC processors. The reason RISC processors are so common nowadays is because it is better to have many more simple RISC cores than having a single complex one. It also consumes much less energy and has the potential to be much faster as all cores are used in a set of threads that are all executed in parallel. A similar reasoning applies here, since a simpler interpreter can revamp programs that already use the full VBA potential.
 
 ### Contructing Paths in PowerPoint
 
@@ -95,7 +95,7 @@ In the above example we can notice that paths are constructed using **BuildFreef
 path in Powerpoint. This is a huge limitation that is bypassed by an undocumented feature that can be used when defining complex paths. As in paths in other vector graphics languages, one can insert several subpaths inside a single path, but in Powerpoint this must be done according to certain rules. Although these rules are not always necessary they are simple to implement and understand:
 
 - The first path in the group of subpaths must start with the initial _"moveto"_ declared in **BuildFreeform**
-- The first path must be closed either using a _"lineto"_ to the coordinates indicated in **BuildFreeform** or they must be the last coordinates of a bezier curve.
+- The first path must be closed either using a _"lineto"_ to the coordinates indicated in **BuildFreeform** or they must be the last coordinates of a Bezier curve.
 - The first _"moveto"_ of a subpath is actually a _"lineto"_ with its initial coordinates
 - The subpath must be closed either with a "_lineto_" to the same coordinates or using these coordinates as the last coordinates of a Bezier curve.
 - Then another _"lineto"_ to the initial coordinates in **BuildFreeform** must appear, except in the last subpath
@@ -106,13 +106,12 @@ In the example above we can identify 6 subpaths. The first obviously start with 
     Set MyPath = MyShapes.BuildFreeform(0, 286.75, 156.8356)
 ```
 
-And is closed with the first _"lineto"_ back to the first coordinates of **BuildFreeform**
-
+And is closed with the first _"lineto"_ back to the first coordinates of **BuildFreeform** 
 ```vba
     MyPath.AddNodes 0, 0, 286.75, 156.8356
 ```
 
-Because the last coordinates of the last bezier curve does not close the figure:
+Because the last coordinates of the last Bezier curve does not close the figure:
 
 ```vba
     MyPath.AddNodes 1, 1, 298.59, 156.17256, 297.92697, 156.8356, 297.11002, 156.8356
@@ -154,7 +153,7 @@ Now the following 5 subpaths start with _"lineto"_ and are closed with two _"lin
           ⋮
     MyPath.AddNodes 0, 0, 282.31, 150.9156
 ```
-Notice that the last path does not need a _"lineto"_ to the begining of the first path. Also notice that _"lineto"_ commands are identified by four parameters. The first two should be 0, whereas the last two are the coordinates of the _"lineto"_. A _"curveto"_ command has eight parameters, where the first two are 1 and the other six parameters are the coordinates of the control points following the the last point of the previous _"lineto"_ or _"curveto"_.
+Notice that the last path does not need a _"lineto"_ to the begining of the first path. Also notice that _"lineto"_ commands are identified by four parameters. The first two should be 0, whereas the last two are the coordinates of the _"lineto"_. A _"curveto"_ command has eight parameters, where the first two are 1 and the other six parameters are the coordinates of the control points following the last point of the previous _"lineto"_ or _"curveto"_.
 
 ### Executing the Example
 
@@ -162,16 +161,83 @@ Opening the file [PPTPathAnalysis.pptm](https://github.com/nilostolte/MicroVBA-P
 
 ![image](https://user-images.githubusercontent.com/80269251/117228042-377db280-ade6-11eb-917a-66549aa73798.png)
 
+#### Debugging the the Example
 Just click **Edit** instead of Run. The following window will open. Make sure to click on the left side of the statement using the variable **stop_here**, indicated by the circle. This is a _"breakpoint"_, the point where the program will stop and wait until one allows it to continue.
 
 ![image](https://user-images.githubusercontent.com/80269251/117228832-dfe04680-ade7-11eb-9c23-01a129f24ad6.png)
 
-Then click on the green triangle to play, that is, to run the macro. One will have this content in the presentation:
+#### Execution
+Then click on the green triangle to play, that is, to run the macro. One will have this content in the presentation, in the Powerpoint window:
 
 ![image](https://user-images.githubusercontent.com/80269251/117229502-25e9da00-ade9-11eb-9b8b-9857eead636e.png)
 
-Right click the object and choose **Edit Points**. One will get the following effect:
+Going to this window, right click the object and choose **Edit Points**. One will get the following effect:
 
 ![image](https://user-images.githubusercontent.com/80269251/117229751-97298d00-ade9-11eb-96a6-09699409714c.png)
 
-As one can see, the red lines are the _"lineto"_ commands to the first point of the path. These lines only appear when one choses **edit Points**. In fact all these elements are considered as a single object. Now, returning to the macro window, one can notice that the program stopped exactly where it was asked.
+As one can see, the red lines are the _"lineto"_ commands to the first point of the path. These lines only appear when one choses **Edit Points**. In fact all these elements are considered as a single object. One can also verify that in the VBA IDE window that the program stopped exactly where it was asked. One should leave it stopped at that point.
+
+#### Invisible Points
+In the Powerpoint window, the indicated points are a bit confusing because they do not correspond to the actual number of points created. When one clicks one of the points, other points appear. Some of these points really exist, and other are just graphics handles to change the geometry. This can be quite puzzling and confusing. 
+
+To really see the actual points inside PowerPoint one has to use the debugger. Each point is stored in a structure called a **Node** and the path is stored in a Collection called **Nodes**. Since the debugger is stopped on a breakpoint, all the internal variables can be checked in the VBA IDE. To do that, one should first select the text **ActivePresentation.Slides(1).Shapes(1)**, right click the highlighted text, and click on **Add Watch...**, as indicated below:
+
+![image](https://user-images.githubusercontent.com/80269251/117289921-30cd5a80-ae3b-11eb-8c6d-640d50a14578.png)
+
+Then, in the **Add Watch** window just opened type **.Nodes** on the right of **ActivePresentation.Slides(1).Shapes(1)** as indicated below and click on the **OK** button.
+
+![image](https://user-images.githubusercontent.com/80269251/117291954-9d495900-ae3d-11eb-8af2-1a085be2b56d.png)
+
+The **Nodes** Collection will appear in the **Watches** subwindow. Expand **Watch** subwindow by press-clicking at the cross inside the indicated red circle and, still holding the mouse click button, pull it up as indicated below.
+
+![image](https://user-images.githubusercontent.com/80269251/117293881-f619f100-ae3f-11eb-977b-d052f3340746.png)
+
+Then click at the plus (**+**) sign on the left of **ActivePresentation.Slides(1).Shapes(1).Nodes** and on the right of the spectacles icon. To expand to see the complete name, just press-click at the vertical tab line on the left of **Value** and pull it to the right still holding the mouse click button.
+
+Now click on the plus (**+**) sign on the left of **Item 1**, then on the left of **Points**, and **Points(1)** as shown below:
+
+![image](https://user-images.githubusercontent.com/80269251/117295606-0d59de00-ae42-11eb-88cf-b359973111de.png)
+
+#### The Pivot Point
+One can see that the first point of the path had become **(289, 338)** because of the transformations applied in the original object after the macro **createobj** is called as indicated in the macro **example**. Now all the paths can be traced with these coordinates as pointed out in the **Notes** in the PowerPoint window. These notes were written to help to locate the different paths in the **Watch** subwindow as indicated above. The notes are shown here for convenience:
+
+```
+Node 1 – 14: element 1, starts at (289, 338) 
+Node 15: line to (289, 338), closes element 1
+Nodes 16 – 30: element 2
+Node 31: line to (289, 338)
+Nodes 32 – 46: element 3
+Node 47: line to (289, 338)
+Node 48 – 62: element 4
+Node 63: line to (289, 338)
+Nodes 64 – 78: element 5
+Node 79:  line to (289, 338)
+Nodes 80 – 100 : basket
+```
+
+The first noticeable detail is that the first object is special as one can easily deduce from the notes. It has only 14 nodes, while the other "elements" have 15 nodes. This is because its closing _"lineto"_ command is mingled in node 15, which closes "element 1". Since the the first node can be thought as the first "moveto" of the whole path (passed as a parameter to **BuildFreeform**), this point becomes a kind of a pivot for all other subpaths as one could see when **Edit Points** has been chosen. 
+
+Afterwards each subpath has its own "moveto" (which is actually a "lineto") and a closing "lineto" (that could be last point of a curveto but not in this example). In addition to that, after each subpath, there is a "lineto" back to the point **(289, 338)**, as seen in nodes 31, 47, 63 and 79. The last subpath, identified as "basket" does not need to redirect to the point **(289, 338)** because there are no further subpaths following it. Therefore, the nodes 31, 47, 63 and 79 function as a kind of a marker to separate subpaths.
+
+#### Discovering the method accidently
+This method looks quite verbose but it allows putting any subpath anywhere in the path as demonstrated. This trick was actually discovered by accident, because texts in [**menugraphics6**](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/menuInforgraphics6.pptx) (marked in red below) which contains subpaths with "holes" was the only text to show up correctly. This was very puzzling since it is actually the most complex part of the menu items.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/80269251/117304424-ba852400-ae4b-11eb-9b57-9d404473bbd4.png">
+</p>
+
+Since that was highly unusual, and verifying what these texts were "doing correctly" that other texts and icons were obviously not (the errors are not shown above), the conclusion was this method, learned empirically, and shown above.
+
+Microsoft apparently uses a different method to identify subpaths which is more compact but that is less flexible and more complex than the method shown above that looks quite robust.
+
+As can be seen, the path used in this example is the icon of the second menu option above. The file  [**menugraphics6**](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/menuInforgraphics6.pptx) is given so the different objects can be examined in the way exposed above. The gear icon in the third menu option is another interesting example because it implements a hole in the gear. However, any text is also a good example since most of them contain letters that produces "holes" in a previous subpath.
+
+## The Resulting Stack Icon
+
+This example produces the icon of the second menu option of the file [**menugraphics6**](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/menuInforgraphics6.pptx) as shown above.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/80269251/117310644-74cb5a00-ae51-11eb-9aca-763522335f3d.png">
+</p>
+
+As explained above, the icon, which was produced by the macro **createobj**, was modified on the fly by the macro **example**. Since the object is indivisible one can scale it at will and all the points are scaled accordingly. One can can be obtain paths with subpaths manually by using the 
