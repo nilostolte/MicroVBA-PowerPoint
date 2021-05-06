@@ -161,7 +161,7 @@ Opening the file [PPTPathAnalysis.pptm](https://github.com/nilostolte/MicroVBA-P
 
 ![image](https://user-images.githubusercontent.com/80269251/117228042-377db280-ade6-11eb-917a-66549aa73798.png)
 
-#### Debugging the the Example
+#### Debugging the Example
 Just click **Edit** instead of Run. The following window will open. Make sure to click on the left side of the statement using the variable **stop_here**, indicated by the circle. This is a _"breakpoint"_, the point where the program will stop and wait until one allows it to continue.
 
 ![image](https://user-images.githubusercontent.com/80269251/117228832-dfe04680-ade7-11eb-9c23-01a129f24ad6.png)
@@ -215,7 +215,9 @@ Node 79:  line to (289, 338)
 Nodes 80 – 100 : basket
 ```
 
-The first noticeable detail is that the first object is special as one can easily deduce from the notes. It has only 14 nodes, while the other "elements" have 15 nodes. This is because its closing _"lineto"_ command is mingled in node 15, which closes "element 1". Since the the first node can be thought as the first "moveto" of the whole path (passed as a parameter to **BuildFreeform**), this point becomes a kind of a pivot for all other subpaths as one could see when **Edit Points** has been chosen. 
+A more detailed explanation about this object can be found in the section [The Resulting Stack Icon](https://github.com/nilostolte/MicroVBA-PowerPoint#the-resulting-stack-icon)
+
+The first noticeable detail is that the first object is special as one can easily deduce from the notes. It has only 14 nodes, while the other "elements" have 15 nodes. This is because its closing _"lineto"_ command is mingled in node 15, which closes "element 1". Since the the first node can be thought as the first "moveto" of the whole path (passed as a parameter to **BuildFreeform**), this point becomes a kind of a pivot for all other subpaths as one could see when **Edit Points** has been chosen.
 
 Afterwards each subpath has its own "moveto" (which is actually a "lineto") and a closing "lineto" (that could be last point of a curveto but not in this example). In addition to that, after each subpath, there is a "lineto" back to the point **(289, 338)**, as seen in nodes 31, 47, 63 and 79. The last subpath, identified as "basket" does not need to redirect to the point **(289, 338)** because there are no further subpaths following it. Therefore, the nodes 31, 47, 63 and 79 function as a kind of a marker to separate subpaths.
 
@@ -240,7 +242,11 @@ This example produces the icon of the second menu option of the file [**menugrap
   <img src="https://user-images.githubusercontent.com/80269251/117310644-74cb5a00-ae51-11eb-9aca-763522335f3d.png">
 </p>
 
-As explained above, the icon, which was produced by the macro **createobj**, was modified on the fly by the macro **example**. Since the object is indivisible one can scale it at will and all the points are scaled accordingly. One can can be obtain paths with subpaths manually by using the **Combine Shapes** which is hidden in PowerPoint 2010. It actually produces paths in a similar way that was demontrated above.
+As explained above, the icon, which was produced by the macro **createobj**, was modified on the fly by the macro **example**. Since the object is indivisible one can scale it at will and all the points are scaled accordingly. Notice that the macro **createobj** with the code shown in the section [Understanding PowerPoint Internal Path Representation.](https://github.com/nilostolte/MicroVBA-PowerPoint#understanding-powerpoint-internal-path-representation) above is actually a snippet from a MicroVBA code that produces the menu [menuinfographics6](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/menuInforgraphics6.pptx), supplied in this repository.
+
+This icon represents a stack with five elements being pushed or popped from the stack. The stack itself is represented here as a "basket", as it was mentioned in section [The Pivot Point](https://github.com/nilostolte/MicroVBA-PowerPoint#the-pivot-point) above, while the five objects in the stack are simply referenced as "element 1" to "element 5".
+
+One can can be obtain paths with subpaths manually by using the **Combine Shapes** which is hidden in PowerPoint 2010. It actually produces paths in a similar way that was demontrated above.
 
 In this example the subpaths do not overlap and it is a perfect example of **Shape Union**. One can reproduce this by creating different objects, selecting all of them, and then applying **Shape Union** operation. However, how can one reproduce a **Shape Subtraction** operation using the scheme just presented above?
 
