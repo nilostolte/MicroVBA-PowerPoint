@@ -1,5 +1,5 @@
 # MicroVBA-PowerPoint
-MicroVBA is a VBA interpreter written in VBA to be used in **PowerPoint** in order to be able to import large vector graphics files. The advantages are: **vectorization of PowerPoint presentations** (no fonts needed), **fonts embedded in presentations**, can be used as a **Vector Graphics File Format** storage, simplification of complex objects construction, **no limitations in the size of the files** and **more pertinent and helpful error messages**. It actually does not need full VBA conpatibility, since it can smoothly integrate with VBA programs in the Powerpoint presentation.
+MicroVBA is a VBA interpreter written in VBA to be used in **PowerPoint** in order to be able to import large vector graphics files. The advantages are: **vectorization of PowerPoint presentations** (no fonts needed), can be used as a **Vector Graphics File Format** storage, **smooth connectivity** with VBA programs inside the PowerPoint presentations, simplification of complex objects construction, **no limitations in the size of the files** and **more pertinent and helpful error messages**. It actually does not need full VBA conpatibility, since it can smoothly integrate with VBA programs in the Powerpoint presentation.
 
 ## Overview
 MicroVBA programs can theoretically run as macros in PowerPoint. However, due to limitations in the size of VBA procedures, 
@@ -233,6 +233,8 @@ Since that was highly unusual, and verifying what these texts were "doing correc
 Microsoft apparently uses a different method to identify subpaths which is more compact but that is less flexible and more complex than the method shown above that looks quite robust.
 
 As can be seen, the path used in this example is the icon of the second menu option above. The file  [**menugraphics6**](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/menuInforgraphics6.pptx) is given so the different objects can be examined in the way exposed above. The gear icon in the third menu option is another interesting example because it implements a hole in the gear. However, any text is also a good example since most of them contain letters that produces "holes" in a previous subpath.
+
+Also, a very important point is that the file [**menugraphics6**](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/menuInforgraphics6.pptx) also demonstrates that vectorized texts are possible in PowerPoint presentations. Also, with vectorized texts, presentations can have a much better look, with a much better kerning and right justification.
 
 ## The Resulting Stack Icon
 
