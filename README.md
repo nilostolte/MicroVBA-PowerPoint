@@ -240,4 +240,19 @@ This example produces the icon of the second menu option of the file [**menugrap
   <img src="https://user-images.githubusercontent.com/80269251/117310644-74cb5a00-ae51-11eb-9aca-763522335f3d.png">
 </p>
 
-As explained above, the icon, which was produced by the macro **createobj**, was modified on the fly by the macro **example**. Since the object is indivisible one can scale it at will and all the points are scaled accordingly. One can can be obtain paths with subpaths manually by using the 
+As explained above, the icon, which was produced by the macro **createobj**, was modified on the fly by the macro **example**. Since the object is indivisible one can scale it at will and all the points are scaled accordingly. One can can be obtain paths with subpaths manually by using the **Combine Shapes** which is hidden in PowerPoint 2010. It actually produces paths in a similar way that was demontrated above.
+
+In this example the subpaths do not overlap and it is a perfect example of **Shape Union**. One can reproduce this by creating different objects, selecting all of them, and then applying **Shape Union** operation. However, how can one reproduce a **Shape Subtraction** operation using the scheme just presented above?
+
+## Subtracting Shapes using Subpaths Winding
+
+When applying **Shape Union** all shapes are assumed to be "winding" in the same direction. If the shapes are winding in opposite directions and if they overlap, a subtraction takes place as shown in the figure below:
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/80269251/117321603-46527c80-ae5b-11eb-913b-4e3c90c0fbd6.png">
+</p>
+ 
+As one can see in the figure a small circle is subtracted from the big circle by winding the small circle in the opposite way. Also, the small circle should be subtracted from the big one. If the opposite is done both objects disappear. One can think in terms that a "negative object" does not exist. Thus, to obtain an actual subtraction, both objects must overlap and if one is inside the other, the small should be subratcted from the big one, otherwise both objects disappear.
+
+To accomplish subtractions with subpaths created as shown in section [**Contructing Paths in PowerPoint**](https://github.com/nilostolte/MicroVBA-PowerPoint#contructing-paths-in-powerpoint) above, the object to be subtracted should appear first. Then, if one wants the following subpath to be subtracted from the previous one, they should wind their points in the opposite way from each other. By defining paths using MicroVBA as explained, subtractions are automatic when the subpaths are winding in opposite directions. These are conventions that are common in vector graphics. 
+In general, one can modify the "winding rule" to stop behaving in this way to avoid subtractions in non-convex surfaces that intersects itself. In Java, this is done by using the **setWindingRule** function of a Path2D. Normally, the default winding rule is **WIND_NON_ZERO**, which allows operating in this way also in Java paths. However in PowerPoint it seems this rule is always **WIND_NON_ZERO** and it cannot aapparently be modified.
