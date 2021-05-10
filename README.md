@@ -8,7 +8,7 @@ The MicroVBA interpreter can be found inside the file [**ReadMicroVBA.pptm**](ht
 The file [**macro.txt**](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/MicroVBA%20Interpreter/macro.txt) was generated automatically by a modified version of [FreeHep](https://github.com/nilostolte/FreeHep#freehep) project soon to appear in another repository. This project allows to convert Java vector objects into MicroVBA
 automatically. The Java program converted is [MenuInfographics6](https://github.com/nilostolte/Java-Vector-GUI/tree/main/MenuInfographics6), which is already available in this repository (please check its [README file](https://github.com/nilostolte/Java-Vector-GUI/tree/main/MenuInfographics6#menuinfographics6)).
 
-A [Digital Mock-Up in PowerPoint](https://github.com/nilostolte/MicroVBA-PowerPoint/tree/main/Example) is also available. In this mock-up the menu used as an example ([MenuInfographics6](https://github.com/nilostolte/Java-Vector-GUI/tree/main/MenuInfographics6)) that was convereted to MicroVBA (file [**macro.txt**](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/MicroVBA%20Interpreter/macro.txt)) is interpreted inside PowerPoint using [MacroVBA interpreter](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/MicroVBA%20Interpreter/ReadMicroVBA.pptm) 
+A [Digital Mock-Up in PowerPoint](https://github.com/nilostolte/MicroVBA-PowerPoint/tree/main/Example) is also available. In this mock-up the menu used as an example ([MenuInfographics6](https://github.com/nilostolte/Java-Vector-GUI/tree/main/MenuInfographics6)) that was convereted to MicroVBA (file [**macro.txt**](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/MicroVBA%20Interpreter/macro.txt)) is interpreted inside PowerPoint using [MicroVBA interpreter](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/MicroVBA%20Interpreter/ReadMicroVBA.pptm) 
 and the resulting object is used in a [presentation](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/Example/testfontsembedded.pptm) that mimicks the original [program](https://github.com/nilostolte/Java-Vector-GUI/tree/main/MenuInfographics6). When one clicks one item of the menu, a text appears explaining what the menu item activates when clicked. This example shows how our system can be used for automatic creation of digital mock-ups of Java interfaces in PowerPoint. 
 
 A part of **macro.txt** is used in the section [Understanding PowerPoint Internal Path Representation](https://github.com/nilostolte/MicroVBA-PowerPoint#understanding-powerpoint-internal-path-representation) as an example to show how to create paths with subpaths using MicroVBA in PowerPoint.
@@ -171,17 +171,17 @@ This solution has a drawback that can be used as a kind of WaterMark, as seen in
 
 ### Executing the Example
 
-Opening the file [PPTPathAnalysis.pptm](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/PPTPathAnalysis.pptm), one sees a blank presentation. The object must be created by the macro **example**. To see the macro, one should click on tab **View** and click on **Macros**. As a result one should get this window:
+Opening the file [PPTPathAnalysis.pptm](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/PPTPathAnalysis.pptm), one sees a blank presentation. One should be make sure to [enable macros](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/Example/README.md#enabling-macros) in the PowerPoint application. The object must be created by the macro **example**. To see the macro, one should press **ALT+F8**. As a result one should get this window:
 
 ![image](https://user-images.githubusercontent.com/80269251/117228042-377db280-ade6-11eb-917a-66549aa73798.png)
 
 #### Debugging the Example
-Just click **Edit** instead of Run. The following window will open. Make sure to click on the left side of the statement using the variable **stop_here**, indicated by the circle. This is a _"breakpoint"_, the point where the program will stop and wait until one allows it to continue.
+Just click **Edit** instead of Run. The following window will open. Click on the statement **stop_here = 0** and press **F9**. This is a _"breakpoint"_, the point where the program will stop and wait until one allows it to continue.
 
 ![image](https://user-images.githubusercontent.com/80269251/117228832-dfe04680-ade7-11eb-9c23-01a129f24ad6.png)
 
 #### Execution
-Then click on the green triangle to play, that is, to run the macro. One will have this content in the presentation, in the Powerpoint window:
+Then click the Run button (a green right-facing arrowhead icon), choose **Run**, **Run Sub/User Form** from the menu bar or press **F5** to make the debugger stop at the line chosen, that is, to run the macro. One will have this content in the presentation, in the Powerpoint window:
 
 ![image](https://user-images.githubusercontent.com/80269251/117229502-25e9da00-ade9-11eb-9b8b-9857eead636e.png)
 
@@ -189,7 +189,7 @@ Going to this window, right click the object and choose **Edit Points**. One wil
 
 ![image](https://user-images.githubusercontent.com/80269251/117229751-97298d00-ade9-11eb-96a6-09699409714c.png)
 
-As one can see, the red lines are the _"lineto"_ commands to the first point of the path. These lines only appear when one choses **Edit Points**. In fact all these elements are considered as a single object. One can also verify that in the VBA IDE window that the program stopped exactly where it was asked. One should leave it stopped at that point.
+As one can see, the red lines are the _"lineto"_ commands to the first point of the path. These lines only appear when one choses **Edit Points** (they also appear if the PowerPoint file is converted to another vector graphics format, so this technique can also work as a sort of [watermark](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/PowerPoint%20Caveats.md)). In fact all these elements are considered as a single object. One can also verify that in the VBA IDE window that the program stopped exactly where it was asked. One should leave it stopped at that point.
 
 #### Invisible Points
 In the Powerpoint window, the indicated points are a bit confusing because they do not correspond to the actual number of points created. When one clicks one of the points, other points appear. Some of these points really exist, and other are just graphics handles to change the geometry. This can be quite puzzling and confusing. 
