@@ -5,7 +5,11 @@ MicroVBA is a VBA interpreter written in VBA to be used in **PowerPoint** in ord
 
 The MicroVBA interpreter can be found inside the file [**ReadMicroVBA.pptm**](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/MicroVBA%20Interpreter/ReadMicroVBA.pptm) under the name of **MicroVBA**. The macro **MicroVBA**, when executed, actually reads the file [**macro.txt**](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/MicroVBA%20Interpreter/macro.txt), which contains the MicroVBA program, and executes it. This program generates the vector objects shown in the presentation [menuInforgraphics6.pptx](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/menuInforgraphics6.pptx).
 
-The file [**macro.txt**](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/MicroVBA%20Interpreter/macro.txt) was generated automatically by a modified version of [FreeHep](https://github.com/nilostolte/FreeHep#freehep) project soon to appear in another repository.
+The file [**macro.txt**](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/MicroVBA%20Interpreter/macro.txt) was generated automatically by a modified version of [FreeHep](https://github.com/nilostolte/FreeHep#freehep) project soon to appear in another repository. This project allows to convert Java vector objects into MicroVBA
+automatically. The Java program converted is [MenuInfographics6](https://github.com/nilostolte/Java-Vector-GUI/tree/main/MenuInfographics6), which is already available in this repository (please check its [README file](https://github.com/nilostolte/Java-Vector-GUI/tree/main/MenuInfographics6#menuinfographics6)).
+
+A [Digital Mock-Up in PowerPoint](https://github.com/nilostolte/MicroVBA-PowerPoint/tree/main/Example) is also available. In this mock-up the menu used as an example ([MenuInfographics6](https://github.com/nilostolte/Java-Vector-GUI/tree/main/MenuInfographics6)) that was convereted to MicroVBA (file [**macro.txt**](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/MicroVBA%20Interpreter/macro.txt)) is interpreted inside PowerPoint using [MacroVBA interpreter](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/MicroVBA%20Interpreter/ReadMicroVBA.pptm) 
+and the resulting object is used in a [presentation](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/Example/testfontsembedded.pptm) that mimicks the original [program](https://github.com/nilostolte/Java-Vector-GUI/tree/main/MenuInfographics6). When one clicks one item of the menu, a text appears explaining what the menu item activates when clicked. This example shows how our system can be used for automatic creation of digital mock-ups of Java interfaces in PowerPoint. 
 
 A part of **macro.txt** is used in the section [Understanding PowerPoint Internal Path Representation](https://github.com/nilostolte/MicroVBA-PowerPoint#understanding-powerpoint-internal-path-representation) as an example to show how to create paths with subpaths using MicroVBA in PowerPoint.
 
@@ -100,7 +104,7 @@ Finally, arithmetic operations can also be implemented as methods in the same ob
 ### Contructing Paths in PowerPoint
 
 In the above example we can notice that paths are constructed using **BuildFreeform**. The parameters passed to the BuildFreeform are the coordinates of the first _"moveto"_ of the path (for a better understanding of paths please refer to [_"path definition"_](https://github.com/nilostolte/ClockWidget#paths) and [_"path commands"_](https://github.com/nilostolte/ClockWidget/blob/main/README.md#path-commands)). These coordinates are particularly important for complex paths in Powerpoint. Actually, there are no _"moveto"_ commands inside a 
-path in Powerpoint. This is a huge limitation that is bypassed by an undocumented feature that can be used when defining complex paths. As in paths in other vector graphics languages, one can insert several subpaths inside a single path, but in Powerpoint this must be done according to certain rules. Although these rules are not always necessary they are simple to implement and understand:
+path in Powerpoint. This is a huge limitation (also see [PowerPoint Caveats](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/PowerPoint%20Caveats.md)) that is bypassed by an undocumented feature that can be used when defining complex paths. As in paths in other vector graphics languages, one can insert several subpaths inside a single path, but in Powerpoint this must be done according to certain rules. Although these rules are not always necessary they are simple to implement and understand:
 
 - The first path in the group of subpaths must start with the initial _"moveto"_ declared in **BuildFreeform**
 - The first path must be closed either using a _"lineto"_ to the coordinates indicated in **BuildFreeform** or they must be the last coordinates of a Bezier curve.
@@ -162,6 +166,8 @@ Now the following 5 subpaths start with _"lineto"_ and are closed with two _"lin
     MyPath.AddNodes 0, 0, 282.31, 150.9156
 ```
 Notice that the last path does not need a _"lineto"_ to the begining of the first path. Also notice that _"lineto"_ commands are identified by four parameters. The first two should be 0, whereas the last two are the coordinates of the _"lineto"_. A _"curveto"_ command has eight parameters, where the first two are 1 and the other six parameters are the coordinates of the control points following the last point of the previous _"lineto"_ or _"curveto"_.
+
+This solution has a drawback that can be used as a kind of WaterMark, as seen in [PowerPoint Caveats](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/PowerPoint%20Caveats.md).
 
 ### Executing the Example
 
