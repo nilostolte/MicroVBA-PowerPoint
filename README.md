@@ -26,7 +26,7 @@ In addition to that, the choice of using real VBA commands makes MicroVBA code s
 
 As one can easily see, MicroVBA opens the door to very powerful uses that were difficult to imagine without it. This is nearly an ideal solution because the heavy graphics can be left to MicroVBA to handle. The graphics can also come from other sources and be converted from other formats given by professional artists, for example.
 
-What completes the use of MicroVBA are **convertions from other vector formats**. This has already been accomplished by a modification of FreeHEP project that generates a MicroVBA file from whatever a Java program shows. Even though this looks more like a programmer's solution, that is not really the case because the Java vector information can be stored in a file using an intermediate file format. This file can be read and the program can than convert the information into MicroVBA.
+What completes the use of MicroVBA are **convertions from other vector formats**. This has already been accomplished by a modification of FreeHEP project that generates a MicroVBA file from whatever a Java program shows (See the project [here](https://github.com/nilostolte/Java2PPT#java2ppt)). Even though this looks more like a programmer's solution, that is not really the case because the Java vector information can be stored in a file using an intermediate file format. This file can be read and the program can than convert the information into MicroVBA.
 
 ## Understanding PowerPoint Internal Path Representation
 
