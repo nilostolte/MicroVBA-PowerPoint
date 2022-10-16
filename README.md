@@ -171,7 +171,7 @@ This solution has a drawback that can be used as a kind of WaterMark, as seen in
 
 ### Executing the Example
 
-Opening the file [PPTPathAnalysis.pptm](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/PPTPathAnalysis.pptm), one sees a blank presentation. One should be make sure to [enable macros](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/Example/README.md#enabling-macros) in the PowerPoint application. The object must be created by the macro **example**. To see the macro, one should press **ALT+F8**. As a result one should get this window:
+Opening the file [PPTPathAnalysis.pptm](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/PPTPathAnalysis.pptm), one sees a blank presentation. One should make sure to [enable macros](https://github.com/nilostolte/MicroVBA-PowerPoint/blob/main/Example/README.md#enabling-macros) in the PowerPoint application. The object must be created by the macro **example**. To see the macro, one should press **ALT+F8**. As a result one should get this window:
 
 ![image](https://user-images.githubusercontent.com/80269251/117228042-377db280-ade6-11eb-917a-66549aa73798.png)
 
