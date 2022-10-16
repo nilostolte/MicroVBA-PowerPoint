@@ -231,7 +231,7 @@ Nodes 80 – 100 : basket
 
 A more detailed explanation about this object can be found in the section [The Resulting Stack Icon](https://github.com/nilostolte/MicroVBA-PowerPoint#the-resulting-stack-icon).
 
-The first noticeable detail is that the first object is special as one can easily deduce from the notes. It has only 14 nodes, while the other "elements" have 15 nodes. This is because its closing _"lineto"_ command is mingled in node 15, which closes "element 1". Since the the first node can be thought as the first "moveto" of the whole path (passed as a parameter to **BuildFreeform**), this point becomes a kind of a pivot for all other subpaths as one could see when **Edit Points** has been chosen.
+The first noticeable detail is that the first object is special as one can easily deduce from the notes. It has only 14 nodes, while the other "elements" have 15 nodes. This is because its closing _"lineto"_ command is mingled in node 15, which closes "element 1". Since the first node can be thought as the first "moveto" of the whole path (passed as a parameter to **BuildFreeform**), this point becomes a kind of a pivot for all other subpaths as one could see when **Edit Points** has been chosen.
 
 Afterwards each subpath has its own "moveto" (which is actually a "lineto") and a closing "lineto" (that could be last point of a curveto but not in this example). In addition to that, after each subpath, there is a "lineto" back to the point **(289, 338)**, as seen in nodes 31, 47, 63 and 79. The last subpath, identified as "basket" does not need to redirect to the point **(289, 338)** because there are no further subpaths following it. Therefore, the nodes 31, 47, 63 and 79 function as a kind of a marker to separate subpaths.
 
